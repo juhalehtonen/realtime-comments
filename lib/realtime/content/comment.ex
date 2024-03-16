@@ -17,6 +17,25 @@ defmodule Realtime.Content.Comment do
           body: String.t()
         }
 
+  @doc """
+  Creates a new Comment from a map of parameters, casting the parameters to the expected types.
+
+  ## Examples
+
+      iex> Realtime.Content.Comment.new!(%{
+      ...>   author: "Mr. America",
+      ...>   body: "New York City is the best city in the world!",
+      ...>   id: "123",
+      ...>   post_id: "456"
+      ...> })
+      %Realtime.Content.Comment{
+        author: "Mr. America",
+        body: "New York City is the best city in the world!",
+        id: 123,
+        post_id: 456,
+      }
+  """
+
   @spec new!(map()) :: __MODULE__.t()
   def new!(params) do
     schema = [
