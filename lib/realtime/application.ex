@@ -9,12 +9,8 @@ defmodule Realtime.Application do
   def start(_type, _args) do
     children = [
       RealtimeWeb.Telemetry,
-      Realtime.Repo,
       {DNSCluster, query: Application.get_env(:realtime, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Realtime.PubSub},
-      # Start a worker by calling: Realtime.Worker.start_link(arg)
-      # {Realtime.Worker, arg},
-      # Start to serve requests, typically the last entry
       RealtimeWeb.Endpoint
     ]
 
