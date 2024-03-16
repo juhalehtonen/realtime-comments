@@ -11,6 +11,8 @@ defmodule Realtime.Application do
       RealtimeWeb.Telemetry,
       {DNSCluster, query: Application.get_env(:realtime, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Realtime.PubSub},
+      {Realtime.Storage.TableOwner, []},
+      {Realtime.Storage.TableManager, %{target_process_name: Realtime.Storage.TableOwner}},
       RealtimeWeb.Endpoint
     ]
 
