@@ -22,7 +22,7 @@ defmodule Realtime.Content.Comment do
 
   ## Examples
 
-      iex> Realtime.Content.Comment.new!(%{
+      iex> Realtime.Content.Comment.new(%{
       ...>   author: "Mr. America",
       ...>   body: "New York City is the best city in the world!",
       ...>   id: "123",
@@ -36,8 +36,8 @@ defmodule Realtime.Content.Comment do
       }
   """
 
-  @spec new!(map()) :: __MODULE__.t()
-  def new!(params) do
+  @spec new(map()) :: {:ok, __MODULE__.t()} | {:error, Ecto.Changeset.t()}
+  def new(params) do
     schema = [
       id: :integer,
       post_id: :integer,
@@ -52,8 +52,9 @@ defmodule Realtime.Content.Comment do
       :body
     ]
 
-    {:ok, value} = Realtime.DataNormalizer.normalize(params, schema, required)
-
-    struct(__MODULE__, value)
+    case Realtime.DataNormalizer.normalize(params, schema, required) do
+      {:ok, value} -> {:ok, struct(__MODULE__, value)}
+      {:error, changeset} -> {:error, changeset}
+    end
   end
 end

@@ -5,8 +5,6 @@ defmodule Realtime.Storage.TableOwner do
   This is a contrived example, but in a real world scenario, perhaps this process does
   something periodically and could crash if that failed. If so, the `TableManager` will
   temporarily take ownership while `TableOwner` gets restarted.
-
-  This approach is also documented in https://www.erlang.org/doc/man/ets.html#give_away-3
   """
   use GenServer
   require Logger

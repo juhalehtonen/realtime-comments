@@ -19,10 +19,10 @@ defmodule Realtime.Storage do
 
   The `:post_id` of the comment is used as the key.
   """
-  def insert_comment(comment) when is_map(comment) do
+  def insert_row(data) when is_map(data) do
     :ets.insert(
       @ets_table_name,
-      {comment.post_id, comment.id, comment.author, comment.body}
+      {data.post_id, data}
     )
   end
 
