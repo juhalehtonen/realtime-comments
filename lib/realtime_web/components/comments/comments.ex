@@ -19,8 +19,8 @@ defmodule RealtimeWeb.Components.Comments do
         phx-mounted={
           @ready &&
             JS.transition(
-              {"ease-in duration-200", "opacity-0 p-0 h-0", "opacity-100"},
-              time: 200
+              {"ease-in duration-500", "opacity-0", "opacity-100"},
+              time: 500
             )
         }
       >
