@@ -17,7 +17,7 @@ defmodule RealtimeWeb.Router do
   scope "/", RealtimeWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", PostLive.Show, :show
   end
 
   # Other scopes may use custom stacks.
