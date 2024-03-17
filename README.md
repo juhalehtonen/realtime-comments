@@ -21,14 +21,14 @@ In many Phoenix-based projects, the default choice of PostgreSQL as the RDBMS of
 
 #### Limitations of chosen ETS approach
 
-In addition to the general tradeoffs between ETS and PostgreSQL (the default choice with Phoenix projects), there are some notable downsides:
+In addition to the general tradeoffs between ETS and PostgreSQL (the default choice with Phoenix projects), there are some downsides worth highlighting in the particular approach taken here:
 
   - **Single-node constraint**: ETS only runs on a single Elixir node, limiting the ability to scale horizontally through clustering without adopting a more distributed storage solution.
-  - **Complex Table Management**: My approach for increased robustness introduces unnecessary complexity in table management for Realtime, which could be avoided with simpler solutions. The approach could be valuable in a real world project, but adds complexity to this toy project.
+  - **Complex Table Management**: My approach for increased robustness introduces unnecessary complexity in table management for Realtime, which could be avoided with simpler solutions. The approach could be valuable in a real world project, but adds complexity to this toy project. This hopefully makes the conversation more interesting.
 
 ### Constrained feature set
 
-Realtime intentionally limits its features to managing Comments on a single Post, adhering closely to the project's original scope. This design choice excludes the management of Posts, aligning with the task's given objective.
+Realtime intentionally limits its features to managing Comments on a single Post, adhering closely to the project's original scope. This design choice excludes the management of Posts, aligning with the task's given objective but limits the surface area of interesting features to discuss.
 
 ## Learn more
 
