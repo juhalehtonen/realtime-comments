@@ -1,8 +1,7 @@
 defmodule Realtime.Application do
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
-  @moduledoc false
-
+  @moduledoc """
+  Application module for Realtime.
+  """
   use Application
 
   @impl true
@@ -11,9 +10,7 @@ defmodule Realtime.Application do
       RealtimeWeb.Telemetry,
       {DNSCluster, query: Application.get_env(:realtime, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Realtime.PubSub},
-      # TODO: Ideally these would be within their own Supervisor with a :one_for_all strategy
-      {Realtime.Storage.TableOwner, []},
-      {Realtime.Storage.TableManager, %{target_process_name: Realtime.Storage.TableOwner}},
+      Realtime.Storage.Supervisor,
       RealtimeWeb.Endpoint
     ]
 
