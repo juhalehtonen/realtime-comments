@@ -1,5 +1,6 @@
 defmodule RealtimeWeb.PostLive.Show do
   use RealtimeWeb, :live_view
+  import RealtimeWeb.Components.Comments
 
   alias Realtime.Content
 

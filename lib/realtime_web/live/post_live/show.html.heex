@@ -18,42 +18,12 @@
 <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
   <p><%= @post.body %></p>
 </article>
-<!--  TODO: Move this part to CommentFormComponent or create a separate component for comment listing? -->
 <div class="mt-10 mb-10">
-  <div phx-update="stream" id="comments">
-    <article
-      :for={{id, comment} <- @streams.comments}
-      id={id}
-      class="p-6 mb-3 text-base bg-white border-t border-gray-200"
-      phx-mounted={
-        @ready &&
-          JS.transition(
-            {"ease-in duration-200", "opacity-0 p-0 h-0", "opacity-100"},
-            time: 200
-          )
-      }
-    >
-      <footer class="flex justify-between items-center mb-2">
-        <div class="flex items-center">
-          <p class="inline-flex items-center mr-3 text-sm text-gray-900 font-semibold">
-            <%= comment.author %>
-          </p>
-          <p class="text-sm text-gray-600">
-            <time pubdate="" datetime="2022-06-23" title="June 23rd, 2022">
-              <%= comment.inserted_at %>
-            </time>
-          </p>
-        </div>
-      </footer>
-      <p class="text-gray-500">
-        <%= comment.body %>
-      </p>
-    </article>
-  </div>
+  <.comment_list comments={@streams.comments} ready={@ready} />
 
   <.live_component
     module={RealtimeWeb.PostLive.CommentFormComponent}
-    id={@post.id}
+    id={"comments-form-#{@post.id}"}
     title="Comments"
     action={@live_action}
     comment={@comment}
