@@ -6,6 +6,14 @@ defmodule Realtime.Content.Comment do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @type t :: %__MODULE__{
+          id: integer() | nil,
+          post_id: integer() | nil,
+          body: String.t() | nil,
+          author: String.t() | nil,
+          inserted_at: DateTime.t() | nil
+        }
+
   embedded_schema do
     field :post_id, :integer
     field :author, :string
@@ -13,7 +21,8 @@ defmodule Realtime.Content.Comment do
     field :inserted_at, :utc_datetime
   end
 
-  def changeset(%__MODULE__{} = comment, attrs \\ %{}) do
+  @spec changeset(__MODULE__.t(), map()) :: Ecto.Changeset.t()
+  def changeset(comment, attrs \\ %{}) do
     comment
     |> cast(attrs, [:post_id, :author, :body, :inserted_at])
     |> validate_required([:post_id, :author, :body])
