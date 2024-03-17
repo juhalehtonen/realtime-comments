@@ -12,7 +12,8 @@ defmodule Realtime.Content do
   def list_comments(post_id) when is_integer(post_id) do
     # TODO: Storage module API could benefit from being more generic:
     # list_rows should accept a table name and the table name could
-    # be more dynamic. Currently this is fairly coupled to the `Content`.
+    # be more dynamic. Currently this is fairly coupled to the `Content`
+    # when it really doesn't need to.
     Realtime.Storage.get_rows_for_key(post_id) |> Enum.map(fn {_, comment} -> comment end)
   end
 

@@ -20,6 +20,8 @@ defmodule RealtimeWeb.PostLiveTest do
 
       html = render(index_live)
       assert html =~ "Great post!"
+
+      on_exit(fn -> Realtime.TestSupport.reset_ets() end)
     end
 
     test "does not save comment with invalid params", %{conn: conn} do
